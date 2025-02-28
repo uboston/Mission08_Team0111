@@ -1,4 +1,4 @@
-﻿@model Taskmodel
+﻿@model Mission08_Team0111.Models.Task
 
 @{
     ViewData["Title"] = "Edit Task";
@@ -7,10 +7,10 @@
 <h2 class="text-center my-4">Edit Task</h2>
 
 <form asp-action="EditTask" method="post" class="container w-50">
-    <input type="hidden" asp-for="TaskId" />
+    <input type="hidden" asp-for="TaskID" />
 
     <div class="mb-3">
-        <label class="form-label">Task:</label>
+        <label class="form-label">Task Name:</label>
         <input asp-for="TaskName" class="form-control" required />
         <span asp-validation-for="TaskName" class="text-danger"></span>
     </div>
@@ -33,8 +33,11 @@
 
     <div class="mb-3">
         <label class="form-label">Category:</label>
-        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
-            <option value="">Select Category</option>
+        <select asp-for="Category" class="form-select">
+            <option value="Home">Home</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+            <option value="Church">Church</option>
         </select>
     </div>
 
