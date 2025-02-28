@@ -2,7 +2,83 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model List<Task>
+
+<div class="quadrant-parent">
+    <h1>Stephen Covey&apos;s Time Management Matrix</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col">
+                <p>Urgent</p>
+            </div>
+            <div class="col">
+                <p>Not Urgent</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <p class="rotated-text">Important</p>
+            </div>
+            <div class="col">
+                <h2>Quandrant 1</h2>
+				<ul>
+					@foreach (var x in Model)
+					{
+						if (x.Quandrant == 1)
+						{
+                            <li>x.TaskName</li>
+						}
+					}
+                </ul>
+            </div>
+            <div class="col">
+                <h2>Quandrant 2</h2>
+                <ul>
+                    @foreach (var x in Model)
+                    {
+                        if (x.Quandrant == 2)
+                        {
+                            <li>x.TaskName</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <p class="rotated-text">Not Important</p>
+            </div>
+            <div class="col">
+                <h2>Quandrant 3</h2>
+                <ul>
+                    @foreach (var x in Model)
+                    {
+                        if (x.Quandrant == 3)
+                        {
+                            <li>x.TaskName</li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="col">
+                <h2>Quandrant 4</h2>
+                <ul>
+                    @foreach (var x in Model)
+                    {
+                        if (x.Quandrant == 4)
+                        {
+                            <li>x.TaskName</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
+
+<button class="btn btn-primary mt-3"
+        asp-controller="Home"
+        asp-action="AddTask">
+    Add Task
+</button>
