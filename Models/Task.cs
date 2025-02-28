@@ -8,10 +8,12 @@ public class Task
     [Required]
     public int TaskID { get; set; }
  
-    public required string TaskName { get; set; }
+    [Required]
+    public string TaskName { get; set; }
     public DateTime DueDate { get; set; } 
     public int Quadrant { get; set; }
-    public required string Category { get; set; }
+    [Required]
+    public string Category { get; set; }
     public bool Completed { get; set; }
 
 }
