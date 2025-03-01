@@ -26,7 +26,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CreateTask()
     {
-        return View("CreateTask", new Task());
+        return View(new Task());
     }
 
     [HttpPost]
