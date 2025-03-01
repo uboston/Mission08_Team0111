@@ -17,15 +17,51 @@ namespace Mission08_Team0111.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
+            modelBuilder.Entity("Mission08_Team0111.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryID = 1,
+                            Name = "Home"
+                        },
+                        new
+                        {
+                            CategoryID = 2,
+                            Name = "School"
+                        },
+                        new
+                        {
+                            CategoryID = 3,
+                            Name = "Work"
+                        },
+                        new
+                        {
+                            CategoryID = 4,
+                            Name = "Church"
+                        });
+                });
+
             modelBuilder.Entity("Mission08_Team0111.Models.Task", b =>
                 {
                     b.Property<int>("TaskID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Completed")
                         .HasColumnType("INTEGER");
@@ -42,7 +78,25 @@ namespace Mission08_Team0111.Migrations
 
                     b.HasKey("TaskID");
 
+                    b.HasIndex("CategoryID");
+
                     b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("Mission08_Team0111.Models.Task", b =>
+                {
+                    b.HasOne("Mission08_Team0111.Models.Category", "Category")
+                        .WithMany("Tasks")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Mission08_Team0111.Models.Category", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }
