@@ -9,4 +9,7 @@ public interface ITaskRepository
     public void DeleteTask(Task task);
     
     List<Category> Categories { get; }
+
+    IQueryable<Task> GetTaskswithCat();
+
 }

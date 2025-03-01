@@ -15,15 +15,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var allTasks = _repo.Tasks
-            //.Include(x => x.Category)
+        // Get all tasks that have not been completed. 
+        var allTasks = _repo.GetTaskswithCat()
             .Where(x => !x.Completed)
             .OrderBy(x => x.DueDate)
             .ToList();
         
+        // Pass them to the view
         return View(allTasks);
     }
 
+    // Get method, just passing category viewbag
     [HttpGet]
     public IActionResult CreateTask()
     {
@@ -32,6 +34,7 @@ public class HomeController : Controller
         return View(new Task());
     }
 
+    // Post method with model validation
     [HttpPost]
     public IActionResult CreateTask(Task task)
     {
@@ -42,17 +45,19 @@ public class HomeController : Controller
         }
         else
         {
+            // Send them back if input is wrong
             ViewBag.Categories = _repo.Categories;
 
             return View("CreateTask", task);
         }
     }
 
+    
+    // Get method sending the task record based on the TaskID
     [HttpGet]
     public IActionResult EditTask(int id)
     {
-        var task2Edit = _repo.Tasks
-            //.Include(x => x.Category)
+        var task2Edit = _repo.GetTaskswithCat()
             .Single(x=>x.TaskID == id);
 
         ViewBag.Categories = _repo.Categories;
@@ -60,6 +65,7 @@ public class HomeController : Controller
         return View(task2Edit);
     }
 
+    // Updates task, checking for model validation
     [HttpPost]
     public IActionResult EditTask(Task updatedtask)
     {
@@ -76,9 +82,10 @@ public class HomeController : Controller
         }
     }
 
+    // Deletes task from Database based on TaskID
     public IActionResult DeleteTask(int id)
     {
-        var deletedTask = _repo.Tasks
+        var deletedTask = _repo.GetTaskswithCat()
             .Single(x => x.TaskID == id);
         
         _repo.DeleteTask(deletedTask);
