@@ -7,13 +7,18 @@ public class Task
     [Key]
     [Required]
     public int TaskID { get; set; }
- 
+
     [Required]
     public string TaskName { get; set; }
-    public DateTime DueDate { get; set; } 
+    public DateTime DueDate { get; set; }
     public int Quadrant { get; set; }
+
     [Required]
-    public string Category { get; set; }
+    public int CategoryID { get; set; } // Foreign Key
+
+    // Navigation property
+    public Category Category { get; set; }
+
     public bool Completed { get; set; }
 
 }
