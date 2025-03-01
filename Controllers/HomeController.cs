@@ -16,6 +16,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var allTasks = _repo.Tasks
+            //.Include(x => x.Category)
             .Where(x => !x.Completed)
             .OrderBy(x => x.DueDate)
             .ToList();
@@ -26,6 +27,8 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CreateTask()
     {
+        ViewBag.Categories = _repo.Categories;
+
         return View(new Task());
     }
 
@@ -39,6 +42,8 @@ public class HomeController : Controller
         }
         else
         {
+            ViewBag.Categories = _repo.Categories;
+
             return View("CreateTask", task);
         }
     }
@@ -47,8 +52,11 @@ public class HomeController : Controller
     public IActionResult EditTask(int id)
     {
         var task2Edit = _repo.Tasks
+            //.Include(x => x.Category)
             .Single(x=>x.TaskID == id);
-        
+
+        ViewBag.Categories = _repo.Categories;
+
         return View(task2Edit);
     }
 
@@ -62,6 +70,8 @@ public class HomeController : Controller
         }
         else
         {
+            ViewBag.Categories = _repo.Categories;
+
             return View("EditTask", updatedtask);
         }
     }

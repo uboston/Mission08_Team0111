@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace Mission08_Team0111.Models;
 
 public class EFTaskRepository : ITaskRepository
@@ -8,8 +10,9 @@ public class EFTaskRepository : ITaskRepository
     {
         context = temp;
     }
-    
+
     public List<Task> Tasks => context.Tasks.ToList();
+    public List<Category> Categories => context.Categories.OrderBy(x=>x.Name).ToList();
 
     public void AddTask(Task task)
     {

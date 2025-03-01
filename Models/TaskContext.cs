@@ -10,10 +10,12 @@ namespace Mission08_Team0111.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>()
-                .HasMany(c => c.Tasks)
-                .WithOne(t => t.Category)
-                .HasForeignKey(t => t.CategoryID);
+            modelBuilder.Entity<Category>().HasData(
+                    new Category {CategoryID = 1, Name = "Home"},
+                    new Category {CategoryID = 2, Name = "School"},
+                    new Category {CategoryID = 3, Name = "Work"},
+                    new Category {CategoryID = 4, Name = "Church"}
+                    );
         }
     }
 }
