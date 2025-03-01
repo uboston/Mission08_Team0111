@@ -1,6 +1,6 @@
 ﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model Mission08_Team0111.Models.Task
-
+<!--Page with form to create a task-->
 @{
     ViewData["Title"] = "Create Task";
 }
@@ -33,7 +33,7 @@
 
     <div class="mb-3">
         <label class="form-label">Category:</label>
-        <select asp-for="Category" class="form-select" required>
+        <select asp-for="CategoryID" class="form-select" required>
           @foreach (Category c in ViewBag.Categories)
           {
               <option value="@c.CategoryID">@c.Name</option>
@@ -46,7 +46,7 @@
         <label class="form-check-label">Completed</label>
     </div>
 
-    <button type="submit" asp-for-route=" " class="btn btn-success">Save Task</button>
+    <button type="submit" class="btn btn-success">Submit Task</button>
 
     <div asp-validation-summary="All"></div>
 </form>

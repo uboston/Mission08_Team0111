@@ -2,6 +2,7 @@
 
 namespace Mission08_Team0111.Models
 {
+    // Category Model
     public class Category
     {
         [Key]

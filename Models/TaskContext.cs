@@ -5,9 +5,13 @@ namespace Mission08_Team0111.Models
     {
         public TaskContext(DbContextOptions<TaskContext> options) : base(options) { }
 
+        // Task Db Set
         public DbSet<Task> Tasks { get; set; }
-        public DbSet<Category> Categories { get; set; } // Add this for Category
+        
+        // Category Db Set
+        public DbSet<Category> Categories { get; set; } 
 
+        // Seed category data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(
